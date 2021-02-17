@@ -272,7 +272,36 @@ public class ProblemSet10 {
 
     public int maxMirror(int[] numbers) {
         if(numbers != null){
-            
+            int maxMirror = 0;
+
+            boolean inMirror = false;
+
+            int mirrorCount = 0;
+
+            for(int i = 0; i < numbers.length; i++){
+                for(int j = (numbers.length - 1); j > i; j--){
+                    if(numbers[i] == numbers[j]){
+                        int x = 1;
+                        inMirror = true;
+                        while(inMirror){
+                            if(numbers[i + x] == numbers[j - x] && x <= (j - i) - 1) {
+                                x++;
+                                mirrorCount = x;
+                                System.out.println(x);
+                            }
+                            else{
+                                inMirror = false;
+                            }
+                        }
+
+                    }
+                    if(mirrorCount > maxMirror){
+                        maxMirror = mirrorCount;
+                        mirrorCount = 0;
+                    }
+                }
+            }
+            return maxMirror;
         }
         return -1;
     }
